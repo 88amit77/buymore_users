@@ -13,7 +13,7 @@ services:
   nginx:
     build: ./web
     ports:
-      - 81:80
+      - 80:80
     links:
       - users_web
     depends_on:
