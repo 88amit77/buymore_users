@@ -3,17 +3,17 @@ version: '2'
 services:
   users_web:
     build: ./users
-    command: bash -c "python3 ./users/manage.py runserver 0.0.0.0:8001"
+    command: bash -c "python3 ./users/manage.py runserver 0.0.0.0:8002"
     volumes:
       - .:/code
     ports:
-      - 8001:8001
+      - 8002:8002
     restart: always
       
   nginx:
     build: ./web
     ports:
-      - 80:80
+      - 81:80
     links:
       - users_web
     depends_on:
