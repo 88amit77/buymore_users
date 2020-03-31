@@ -7,12 +7,14 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ['url', 'username', 'email', 'groups', 'user_permissions']
+        depth = 3
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
         fields = ['url', 'name', 'permissions']
+        depth = 2
 
 
 class ContentTypeSerializer(serializers.HyperlinkedModelSerializer):
