@@ -23,7 +23,7 @@ class ContentTypeSerializer(serializers.HyperlinkedModelSerializer):
         fields = '__all__'
 
 
-class PermissionSerializer(serializers.HyperlinkedModelSerializer):
+class PermissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Permission
         fields = '__all__'
