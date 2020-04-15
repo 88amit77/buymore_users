@@ -17,6 +17,9 @@ urlpatterns = [
 	path('', include(router.urls)),
 	path("docs/", schema_view),
 	path('login/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+	path('username_filter/', views.UsernameFilterView.as_view(), name='username_filter'),
+	path('email_filter/', views.EmailFilterView.as_view(), name='email_filter'),
+	path('userid_filter/', views.UserIdFilterView.as_view(), name='userid_filter'),
 	path('auth/', include('djoser.urls')),
 	path('auth/', include('djoser.urls.jwt')),
 ]
