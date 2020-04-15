@@ -75,7 +75,7 @@ class UsernameFilterView(APIView):
         """
         Return a list of all users.
         """
-        qs = User.objects.all()
+        qs = User.objects.all().order_by('username')
         if 'id' in request.data:
             ids = request.data['id'].split(',')
             qs = qs.filter(id__in=ids)
@@ -99,7 +99,7 @@ class EmailFilterView(APIView):
         """
         Return a list of all users.
         """
-        qs = User.objects.all()
+        qs = User.objects.all().order_by('email')
         if 'id' in request.data:
             ids = request.data['id'].split(',')
             qs = qs.filter(id__in=ids)
@@ -123,7 +123,7 @@ class UserIdFilterView(APIView):
         """
         Return a list of all users.
         """
-        qs = User.objects.all()
+        qs = User.objects.all().order_by('id')
         if 'id' in request.data:
             ids = request.data['id'].split(',')
             qs = qs.filter(id__in=ids)
