@@ -107,17 +107,17 @@ class UserIdFilterView(APIView):
         Return a list of all users.
         """
         qs = User.objects.all().order_by('id')
-        if 'keyword' in request.data:
-            qs = qs.filter(email__contains=request.data['keyword']) | qs.filter(username__contains=request.data['keyword']) | qs.filter(id__contains=request.data['keyword'])
         if 'id' in request.data:
             ids = request.data['id'].split(',')
             qs = qs.filter(id__in=ids)
+        if 'keyword' in request.data:
+            qs = qs.filter(email__contains=request.data['keyword']) | qs.filter(username__contains=request.data['keyword']) | qs.filter(id__contains=request.data['keyword'])
         if 'user_id' in request.data:
-            qs = qs.filter(id__contains=request.data['user_id'])
+            qs = qs.filter(id__in=request.data['user_id'])
         if 'username' in request.data:
-            qs = qs.filter(username__contains=request.data['username'])
+            qs = qs.filter(username__in=request.data['username'])
         if 'email' in request.data:
-            qs = qs.filter(email__contains=request.data['email'])
+            qs = qs.filter(email__in=request.data['email'])
 
         users = [{user.id: user.id} for user in qs]
         return Response(users)
