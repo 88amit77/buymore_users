@@ -111,11 +111,14 @@ class UserIdFilterView(APIView):
             ids = request.data['id'].split(',')
             qs = qs.filter(id__in=ids)
         if 'user_id' in request.data:
-            qs = qs.filter(id__in=request.data['user_id'])
+            user_ids = request.data['user_id'].split(',')
+            qs = qs.filter(id__in=user_ids)
         if 'username' in request.data:
-            qs = qs.filter(username__in=request.data['username'])
+            user_names = request.data['username'].split(',')
+            qs = qs.filter(username__in=user_names)
         if 'email' in request.data:
-            qs = qs.filter(email__in=request.data['email'])
+            emails = request.data['email'].split(',')
+            qs = qs.filter(email__in=emails)
 
         users = [{user.id: user.id} for user in qs]
         return Response(users)
