@@ -110,8 +110,6 @@ class UserIdFilterView(APIView):
         if 'id' in request.data:
             ids = request.data['id'].split(',')
             qs = qs.filter(id__in=ids)
-        if 'keyword' in request.data:
-            qs = qs.filter(email__contains=request.data['keyword']) | qs.filter(username__contains=request.data['keyword']) | qs.filter(id__contains=request.data['keyword'])
         if 'user_id' in request.data:
             qs = qs.filter(id__in=request.data['user_id'])
         if 'username' in request.data:
@@ -122,3 +120,50 @@ class UserIdFilterView(APIView):
         users = [{user.id: user.id} for user in qs]
         return Response(users)
 
+
+class UserIdKeywordFilterView(APIView):
+    """
+    View to list all users in the system.
+
+    * Requires token authentication.
+    * Only admin users are able to access this view.
+    """
+    # authentication_classes = [authentication.TokenAuthentication]
+    # permission_classes = [permissions.IsAdminUser]
+
+    def get(self, request, format=None):
+        """
+        Return a list of all users.
+        """
+        qs = User.objects.all().order_by('id')
+        if 'id' in request.data:
+            ids = request.data['id'].split(',')
+            qs = qs.filter(id__in=ids)
+        if 'keyword' in request.data:
+            qs = qs.filter(email__contains=request.data['keyword']) | qs.filter(username__contains=request.data['keyword']) | qs.filter(id__contains=request.data['keyword'])
+        users = [{user.id: user.id} for user in qs]
+        return Response(users)
+
+
+class UserIdDataKeywordFilterView(APIView):
+    """
+    View to list all users in the system.
+
+    * Requires token authentication.
+    * Only admin users are able to access this view.
+    """
+    # authentication_classes = [authentication.TokenAuthentication]
+    # permission_classes = [permissions.IsAdminUser]
+
+    def get(self, request, format=None):
+        """
+        Return a list of all users.
+        """
+        qs = User.objects.all().order_by('id')
+        if 'id' in request.data:
+            ids = request.data['id'].split(',')
+            qs = qs.filter(id__in=ids)
+        if 'keyword' in request.data:
+            qs = qs.filter(username__contains=request.data['keyword']) | qs.filter(id__contains=request.data['keyword'])
+        users = [{user.id: user.id} for user in qs]
+        return Response(users)
