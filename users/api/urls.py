@@ -14,7 +14,12 @@ from .users.views import (
 	UserIdFilterView,
 	UserIdKeywordFilterView
 )
-from .currency.views import CurrencyViewSet
+from .currency.views import (
+	CurrencyViewSet,
+	CurrencyFilterView,
+	CurrencyIdFilterView,
+	CurrencyKeywordFilterView
+)
 
 
 schema_view = get_swagger_view(title='Micromerce API')
@@ -34,6 +39,9 @@ urlpatterns = [
 	path('userid_filter/', UserIdFilterView.as_view(), name='userid_filter'),
 	path('userid_keyword_filter/', UserIdKeywordFilterView.as_view(), name='userid_keyword_filter'),
 	path('userid_data_keyword_filter/', UserIdDataKeywordFilterView.as_view(), name='userid_data_keyword_filter'),
+	path('currency_filter/', CurrencyFilterView.as_view(), name='currency_filter'),
+	path('currencyid_filter/', CurrencyIdFilterView.as_view(), name='currencyid_filter'),
+	path('currency_keyword_filter/', CurrencyKeywordFilterView.as_view(), name='currency_keyword_filter'),
 	path('auth/', include('djoser.urls')),
 	path('auth/', include('djoser.urls.jwt')),
 ]
