@@ -3,21 +3,21 @@ from django.contrib.contenttypes.models import ContentType
 from rest_framework import serializers
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['url', 'username', 'email', 'groups', 'user_permissions']
         depth = 3
 
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
+class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
         fields = ['url', 'name', 'permissions']
         depth = 2
 
 
-class ContentTypeSerializer(serializers.HyperlinkedModelSerializer):
+class ContentTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContentType
         fields = '__all__'
