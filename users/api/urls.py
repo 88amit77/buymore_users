@@ -7,6 +7,7 @@ from .users.views import (
 	UserViewSet,
 	GroupViewSet,
 	ContentTypeViewSet,
+	DepartmentViewSet,
 	PermissionViewSet,
 	UsernameFilterView,
 	EmailFilterView,
@@ -26,6 +27,7 @@ schema_view = get_swagger_view(title='Micromerce API')
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
+router.register(r'departments', DepartmentViewSet)
 router.register(r'contenttypes', ContentTypeViewSet)
 router.register(r'permissions', PermissionViewSet)
 router.register(r'currency', CurrencyViewSet)

@@ -5,7 +5,14 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import UserSerializer, GroupSerializer, ContentTypeSerializer, PermissionSerializer
+from .models import Department
+from .serializers import (
+    UserSerializer,
+    GroupSerializer,
+    ContentTypeSerializer,
+    PermissionSerializer,
+    DepartmentSerializer
+)
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -170,3 +177,12 @@ class UserIdDataKeywordFilterView(APIView):
             qs = qs.filter(username__contains=request.data['keyword']) | qs.filter(id__contains=request.data['keyword'])
         users = [{user.id: user.id} for user in qs]
         return Response(users)
+
+
+class DepartmentViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Department.objects.all()
+    serializer_class = DepartmentSerializer
+    permission_classes = [permissions.IsAuthenticated]
