@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group
 
 
 class Department(models.Model):
-    department_name = models.CharField(max_length=5)
+    department_name = models.CharField(max_length=255)
     department_type = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
