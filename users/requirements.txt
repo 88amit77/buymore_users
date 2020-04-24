@@ -6,3 +6,4 @@ gunicorn
 requests
 django-rest-swagger
 djoser
+django-cors-headers

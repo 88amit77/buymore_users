@@ -16,11 +16,13 @@ INSTALLED_APPS = [
 	'rest_framework',
 	'rest_framework_swagger',
 	'api',
-	'djoser'
+	'djoser',
+	'corsheaders'
 ]
 
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',
+	'corsheaders.middleware.CorsMiddleware',
 	'django.middleware.common.CommonMiddleware',
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -90,3 +92,5 @@ TEMPLATES = [
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+CORS_ORIGIN_ALLOW_ALL = True
