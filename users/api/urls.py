@@ -13,7 +13,8 @@ from .users.views import (
 	EmailFilterView,
 	UserIdDataKeywordFilterView,
 	UserIdFilterView,
-	UserIdKeywordFilterView
+	UserIdKeywordFilterView,
+	VendorRolesApi
 )
 from .currency.views import (
 	CurrencyViewSet,
@@ -44,6 +45,7 @@ urlpatterns = [
 	path('currency_filter/', CurrencyFilterView.as_view(), name='currency_filter'),
 	path('currencyid_filter/', CurrencyIdFilterView.as_view(), name='currencyid_filter'),
 	path('currency_keyword_filter/', CurrencyKeywordFilterView.as_view(), name='currency_keyword_filter'),
+	path('vendor_roles_field/', VendorRolesApi.as_view(), name='vendor_roles_field'),
 	path('auth/', include('djoser.urls')),
 	path('auth/', include('djoser.urls.jwt')),
 ]

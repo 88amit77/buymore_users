@@ -186,3 +186,15 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+class VendorRolesApi(APIView):
+    def get(self, request):
+        vendor_department = Department.objects.get(pk=2)
+        qs = vendor_department.groups.all()
+        data = {}
+        for group in qs:
+            group_id = group.id
+            name = group.name
+            data[group_id] = name
+        return Response(data)

@@ -4,18 +4,20 @@ from rest_framework import serializers
 from .models import Department
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['url', 'username', 'email', 'groups', 'user_permissions']
-        depth = 3
-
-
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
-        fields = ['url', 'name', 'permissions']
+        fields = ['id', 'name', 'permissions']
         depth = 2
+
+
+class UserSerializer(serializers.ModelSerializer):
+    groups = GroupSerializer(many=True, read_only=False)
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'groups', 'user_permissions']
+        depth = 3
 
 
 class ContentTypeSerializer(serializers.ModelSerializer):
