@@ -14,7 +14,9 @@ from .users.views import (
 	UserIdDataKeywordFilterView,
 	UserIdFilterView,
 	UserIdKeywordFilterView,
-	VendorRolesApi
+	VendorRolesApi,
+	MarketingInchargeFieldApi,
+	BrandAnalystFieldApi
 )
 from .currency.views import (
 	CurrencyViewSet,
@@ -46,6 +48,8 @@ urlpatterns = [
 	path('currencyid_filter/', CurrencyIdFilterView.as_view(), name='currencyid_filter'),
 	path('currency_keyword_filter/', CurrencyKeywordFilterView.as_view(), name='currency_keyword_filter'),
 	path('vendor_roles_field/', VendorRolesApi.as_view(), name='vendor_roles_field'),
+	path('marketing_incharge_field/', MarketingInchargeFieldApi.as_view(), name='marketing_incharge_field'),
+	path('brand_analyst_field/', BrandAnalystFieldApi.as_view(), name='brand_analyst_field'),
 	path('auth/', include('djoser.urls')),
 	path('auth/', include('djoser.urls.jwt')),
 ]

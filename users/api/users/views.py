@@ -198,3 +198,35 @@ class VendorRolesApi(APIView):
             name = group.name
             data[group_id] = name
         return Response(data)
+
+
+class MarketingInchargeFieldApi(APIView):
+    def get(self, request):
+        users = User.objects.all()
+        data = {}
+        for user in users:
+            user_id = user.id
+            if user.first_name is not '' and user.first_name is not None:
+                name = user.first_name
+                if user.last_name is not None and user.last_name is not '':
+                    name = name + ' ' + user.last_name
+            else:
+                name = user.username
+            data[user_id] = name
+        return Response(data)
+
+
+class BrandAnalystFieldApi(APIView):
+    def get(self, request):
+        users = User.objects.all()
+        data = {}
+        for user in users:
+            user_id = user.id
+            if user.first_name is not '' and user.first_name is not None:
+                name = user.first_name
+                if user.last_name is not None and user.last_name is not '':
+                    name = name + ' ' + user.last_name
+            else:
+                name = user.username
+            data[user_id] = name
+        return Response(data)
