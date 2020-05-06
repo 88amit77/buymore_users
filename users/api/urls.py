@@ -22,7 +22,8 @@ from .currency.views import (
 	CurrencyViewSet,
 	CurrencyFilterView,
 	CurrencyIdFilterView,
-	CurrencyKeywordFilterView
+	CurrencyKeywordFilterView,
+	CurrencyFieldApiView
 )
 
 
@@ -50,6 +51,7 @@ urlpatterns = [
 	path('vendor_roles_field/', VendorRolesApi.as_view(), name='vendor_roles_field'),
 	path('marketing_incharge_field/', MarketingInchargeFieldApi.as_view(), name='marketing_incharge_field'),
 	path('brand_analyst_field/', BrandAnalystFieldApi.as_view(), name='brand_analyst_field'),
+	path('currency_field/', CurrencyFieldApiView.as_view(), name='currency_field'),
 	path('auth/', include('djoser.urls')),
 	path('auth/', include('djoser.urls.jwt')),
 ]

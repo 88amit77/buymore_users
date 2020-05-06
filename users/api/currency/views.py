@@ -76,3 +76,15 @@ class CurrencyKeywordFilterView(APIView):
             qs = qs.filter(currency_name__contains=request.data['keyword'])
         currencies = [{currency.id: currency.id} for currency in qs]
         return Response(currencies)
+
+
+class CurrencyFieldApiView(APIView):
+
+    def get(self, request):
+        currency_set = Currency.objects.all()
+        data = {}
+        for currency in currency_set:
+            currency_id = currency.id
+            currency_name = currency.currency_name
+            data[currency_id] = currency_name
+        return Response(data)
