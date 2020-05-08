@@ -12,19 +12,22 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(
+        write_only=True,
+        required=True
+    )
+
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'groups', 'user_permissions']
+        fields = ['id', 'username', 'email', 'groups', 'user_permissions', 'password']
+        write_only_fields = ['password']
 
     def create(self, validated_data):
         groups = validated_data.pop('groups')
-
-        user = User.objects.create(**validated_data)
-        for group in groups:
-            user.groups.add(group)
-            user.save()
+        user = User.objects.create_user(**validated_data)
+        user.groups.set(groups)
+        print(user)
         return user
-
 
 class ContentTypeSerializer(serializers.ModelSerializer):
     class Meta:
