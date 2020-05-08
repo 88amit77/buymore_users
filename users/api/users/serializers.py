@@ -12,12 +12,18 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    groups = GroupSerializer(many=True, read_only=False)
-
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'groups', 'user_permissions']
-        depth = 3
+
+    def create(self, validated_data):
+        groups = validated_data.pop('groups')
+
+        user = User.objects.create(**validated_data)
+        for group in groups:
+            user.groups.add(group)
+            user.save()
+        return user
 
 
 class ContentTypeSerializer(serializers.ModelSerializer):
