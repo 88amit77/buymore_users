@@ -230,3 +230,21 @@ class BrandAnalystFieldApi(APIView):
                 name = user.username
             data[user_id] = name
         return Response(data)
+
+
+class CheckUsernameView(APIView):
+    def get(self, request):
+        user = User.objects.filter(userame=request.data['username'])
+        if len(user) > 0:
+            return Response({"status": True})
+        else:
+            return Response({"status": False})
+
+
+class CheckEmailView(APIView):
+    def get(self, request):
+        user = User.objects.filter(email=request.data['email'])
+        if len(user) > 0:
+            return Response({"status": True})
+        else:
+            return Response({"status": False})

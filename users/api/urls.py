@@ -16,7 +16,9 @@ from .users.views import (
 	UserIdKeywordFilterView,
 	VendorRolesApi,
 	MarketingInchargeFieldApi,
-	BrandAnalystFieldApi
+	BrandAnalystFieldApi,
+	CheckEmailView,
+	CheckUsernameView
 )
 from .currency.views import (
 	CurrencyViewSet,
@@ -41,6 +43,8 @@ urlpatterns = [
 	path("docs/", schema_view),
 	path('login/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
 	path('username_filter/', UsernameFilterView.as_view(), name='username_filter'),
+	path('check_username/', CheckUsernameView.as_view(), name='check_username'),
+	path('check_email/', CheckEmailView.as_view(), name='check_email'),
 	path('email_filter/', EmailFilterView.as_view(), name='email_filter'),
 	path('userid_filter/', UserIdFilterView.as_view(), name='userid_filter'),
 	path('userid_keyword_filter/', UserIdKeywordFilterView.as_view(), name='userid_keyword_filter'),
