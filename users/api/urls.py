@@ -47,7 +47,6 @@ router.register(r'currency', CurrencyViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path("docs/", schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('login/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('username_filter/', UsernameFilterView.as_view(), name='username_filter'),
     path('check_username/', CheckUsernameView.as_view(), name='check_username'),
@@ -66,4 +65,5 @@ urlpatterns = [
     path('currency_field/', CurrencyFieldApiView.as_view(), name='currency_field'),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
+    path("docs/", schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
