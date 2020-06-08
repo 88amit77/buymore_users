@@ -4,6 +4,6 @@ djangorestframework_simplejwt
 psycopg2-binary
 gunicorn
 requests
-django-rest-swagger
+drf-yasg
 djoser
 django-cors-headers

@@ -2,35 +2,41 @@ from django.conf.urls import url
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
-from rest_framework_swagger.views import get_swagger_view
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from rest_framework import permissions
 from .users.views import (
-	UserViewSet,
-	GroupViewSet,
-	ContentTypeViewSet,
-	DepartmentViewSet,
-	PermissionViewSet,
-	UsernameFilterView,
-	EmailFilterView,
-	UserIdDataKeywordFilterView,
-	UserNameDataKeywordFilterView,
-	UserIdFilterView,
-	UserIdKeywordFilterView,
-	VendorRolesApi,
-	MarketingInchargeFieldApi,
-	BrandAnalystFieldApi,
-	CheckEmailView,
-	CheckUsernameView
+    UserViewSet,
+    GroupViewSet,
+    ContentTypeViewSet,
+    DepartmentViewSet,
+    PermissionViewSet,
+    UsernameFilterView,
+    EmailFilterView,
+    UserIdDataKeywordFilterView,
+    UserNameDataKeywordFilterView,
+    UserIdFilterView,
+    UserIdKeywordFilterView,
+    VendorRolesApi,
+    MarketingInchargeFieldApi,
+    BrandAnalystFieldApi,
+    CheckEmailView,
+    CheckUsernameView
 )
 from .currency.views import (
-	CurrencyViewSet,
-	CurrencyFilterView,
-	CurrencyIdFilterView,
-	CurrencyKeywordFilterView,
-	CurrencyFieldApiView
+    CurrencyViewSet,
+    CurrencyFilterView,
+    CurrencyIdFilterView,
+    CurrencyKeywordFilterView,
+    CurrencyFieldApiView
 )
 
+schema_view = get_schema_view(openapi.Info(
+    title="Users API",
+    default_version='v1',
+    description="Test description",
+), public=True, permission_classes=(permissions.AllowAny,))
 
-schema_view = get_swagger_view(title='Micromerce API')
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
@@ -40,24 +46,24 @@ router.register(r'permissions', PermissionViewSet)
 router.register(r'currency', CurrencyViewSet)
 
 urlpatterns = [
-	path('', include(router.urls)),
-	path("docs/", schema_view),
-	path('login/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
-	path('username_filter/', UsernameFilterView.as_view(), name='username_filter'),
-	path('check_username/', CheckUsernameView.as_view(), name='check_username'),
-	path('check_email/', CheckEmailView.as_view(), name='check_email'),
-	path('email_filter/', EmailFilterView.as_view(), name='email_filter'),
-	path('userid_filter/', UserIdFilterView.as_view(), name='userid_filter'),
-	path('userid_keyword_filter/', UserIdKeywordFilterView.as_view(), name='userid_keyword_filter'),
-	path('userid_data_keyword_filter/', UserIdDataKeywordFilterView.as_view(), name='userid_data_keyword_filter'),
-	path('username_data_keyword_filter/', UserNameDataKeywordFilterView.as_view(), name='userid_data_keyword_filter'),
-	path('currency_filter/', CurrencyFilterView.as_view(), name='currency_filter'),
-	path('currencyid_filter/', CurrencyIdFilterView.as_view(), name='currencyid_filter'),
-	path('currency_keyword_filter/', CurrencyKeywordFilterView.as_view(), name='currency_keyword_filter'),
-	path('vendor_roles_field/', VendorRolesApi.as_view(), name='vendor_roles_field'),
-	path('marketing_incharge_field/', MarketingInchargeFieldApi.as_view(), name='marketing_incharge_field'),
-	path('brand_analyst_field/', BrandAnalystFieldApi.as_view(), name='brand_analyst_field'),
-	path('currency_field/', CurrencyFieldApiView.as_view(), name='currency_field'),
-	path('auth/', include('djoser.urls')),
-	path('auth/', include('djoser.urls.jwt')),
+    path('', include(router.urls)),
+    path("docs/", schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('login/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('username_filter/', UsernameFilterView.as_view(), name='username_filter'),
+    path('check_username/', CheckUsernameView.as_view(), name='check_username'),
+    path('check_email/', CheckEmailView.as_view(), name='check_email'),
+    path('email_filter/', EmailFilterView.as_view(), name='email_filter'),
+    path('userid_filter/', UserIdFilterView.as_view(), name='userid_filter'),
+    path('userid_keyword_filter/', UserIdKeywordFilterView.as_view(), name='userid_keyword_filter'),
+    path('userid_data_keyword_filter/', UserIdDataKeywordFilterView.as_view(), name='userid_data_keyword_filter'),
+    path('username_data_keyword_filter/', UserNameDataKeywordFilterView.as_view(), name='userid_data_keyword_filter'),
+    path('currency_filter/', CurrencyFilterView.as_view(), name='currency_filter'),
+    path('currencyid_filter/', CurrencyIdFilterView.as_view(), name='currencyid_filter'),
+    path('currency_keyword_filter/', CurrencyKeywordFilterView.as_view(), name='currency_keyword_filter'),
+    path('vendor_roles_field/', VendorRolesApi.as_view(), name='vendor_roles_field'),
+    path('marketing_incharge_field/', MarketingInchargeFieldApi.as_view(), name='marketing_incharge_field'),
+    path('brand_analyst_field/', BrandAnalystFieldApi.as_view(), name='brand_analyst_field'),
+    path('currency_field/', CurrencyFieldApiView.as_view(), name='currency_field'),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
 ]
