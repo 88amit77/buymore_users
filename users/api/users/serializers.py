@@ -21,6 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'username', 'email', 'groups', 'user_permissions', 'password']
         write_only_fields = ['password']
+        ref_name = 'api_users'
 
     def create(self, validated_data):
         groups = validated_data.pop('groups')
