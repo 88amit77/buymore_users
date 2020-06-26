@@ -21,7 +21,13 @@ from .users.views import (
     MarketingInchargeFieldApi,
     BrandAnalystFieldApi,
     CheckEmailView,
-    CheckUsernameView
+    CheckUsernameView,
+    ImportViewSet,
+    ListImportViewSet,
+    SearchImportViewSet,
+    ExportViewSet,
+    SearchExportViewSet,
+    ListExportViewSet,
 )
 from .currency.views import (
     CurrencyViewSet,
@@ -44,6 +50,14 @@ router.register(r'departments', DepartmentViewSet)
 router.register(r'contenttypes', ContentTypeViewSet)
 router.register(r'permissions', PermissionViewSet)
 router.register(r'currency', CurrencyViewSet)
+#import & Export
+router.register(r'create_import', ImportViewSet)
+router.register(r'list_import', ListImportViewSet)
+router.register(r'search_import', SearchImportViewSet)
+
+router.register(r'create_export', ExportViewSet)
+router.register(r'list_export', ListExportViewSet)
+router.register(r'search_export', SearchExportViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
