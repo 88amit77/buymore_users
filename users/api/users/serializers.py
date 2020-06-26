@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from rest_framework import serializers
-from .models import Department
+from .models import Department, Import, Export
 
 
 class GroupSerializer(serializers.ModelSerializer):
@@ -46,3 +46,28 @@ class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Department
         fields = '__all__'
+
+
+class ImportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Import
+        fields = '__all__'
+
+
+class ListImportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Import
+        fields = ('import_id', 'user_id', 'imfile_name', 'imfile_type', 'imfile_size', 'imfile_isread'
+                  , 'imfile_iscompleted', 'created_date', 'updated_date')
+
+
+class ExportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Export
+        fields = '__all__'
+
+
+class ListExportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Export
+        fields = ('export_id', 'user_id', 'exfile_name', 'exfile_size', 'exfile_iscreated', 'created_date', 'updated_date')

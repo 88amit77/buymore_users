@@ -5,13 +5,17 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Department
+from .models import Department, Import, Export
 from .serializers import (
     UserSerializer,
     GroupSerializer,
     ContentTypeSerializer,
     PermissionSerializer,
-    DepartmentSerializer
+    DepartmentSerializer,
+    ImportSerializer,
+    ListImportSerializer,
+    ExportSerializer,
+    ListExportSerializer,
 )
 
 
@@ -272,3 +276,190 @@ class CheckEmailView(APIView):
             return Response({"status": True})
         else:
             return Response({"status": False})
+
+#for import and export api
+from rest_framework.pagination import PageNumberPagination
+from rest_framework import filters
+
+DEFAULT_PAGE = 1
+class CustomImportPagination(PageNumberPagination):
+    page = DEFAULT_PAGE
+    page_size = 20
+    page_size_query_param = 'page_size'
+
+    def get_paginated_response(self, data):
+        return Response({
+            'links': {
+                'next': self.get_next_link(),
+                'previous': self.get_previous_link()
+            },
+            'total': self.page.paginator.count,
+            'page': int(self.request.GET.get('page', DEFAULT_PAGE)),
+            'page_size': int(self.request.GET.get('page_size', self.page_size)),
+            'UI_data': {
+                'sticky_headers': [
+                    'user_id',
+                    'imfile_name',
+                ],
+                'header': {
+
+                    'user_id':'User Name',
+                    'imfile_name':'File Name',
+                    'imfile_type':'File Type',
+                    'imfile_size':'File Size',
+                    'imfile_isread': 'Is Read',
+                    'imfile_iscompleted': 'Is Completed',
+                    'created_date':'Created At',
+                    'updated_date':'Updated At',
+
+                   },
+                'sortable': [
+                    'user_id',
+                    'imfile_name',
+                ],
+                'searchable': [
+                    'user_id',
+                    'imfile_name',
+                    'imfile_type',
+                    'imfile_size',
+                    'imfile_isread',
+                    'imfile_iscompleted',
+                    'created_date',
+                    'updated_date',
+
+                ],
+
+            },
+            'results': data
+        })
+
+class CustomExportPagination(PageNumberPagination):
+    page = DEFAULT_PAGE
+    page_size = 20
+    page_size_query_param = 'page_size'
+
+    def get_paginated_response(self, data):
+        return Response({
+            'links': {
+                'next': self.get_next_link(),
+                'previous': self.get_previous_link()
+            },
+            'total': self.page.paginator.count,
+            'page': int(self.request.GET.get('page', DEFAULT_PAGE)),
+            'page_size': int(self.request.GET.get('page_size', self.page_size)),
+            'UI_data': {
+                'sticky_headers': [
+                    'user_id',
+                    'exfile_name',
+                ],
+                'header': {
+
+                    'user_id':'User Name',
+                    'exfile_name':'File Name',
+                    'exfile_type':'File Type',
+                    'exfile_size':'File Size',
+                    'exfile_iscreated': 'Is Read',
+                    'exfile_iscompleted': 'Is Completed',
+                    'created_date':'Created At',
+                    'updated_date':'Updated At',
+
+                   },
+                'sortable': [
+                    'user_id',
+                    'exfile_name',
+                ],
+                'searchable': [
+                    'user_id',
+                    'exfile_name',
+                    'exfile_type',
+                    'exfile_size',
+                    'exfile_iscreated',
+                    'exfile_iscompleted',
+                    'created_date',
+                    'updated_date',
+
+                ],
+
+            },
+            'results': data
+        })
+
+class ImportViewSet(viewsets.ModelViewSet):
+
+    queryset = Import.objects.all()
+    serializer_class = ImportSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+class ListImportViewSet(viewsets.ViewSet):
+    # pagination_class = CustomPagination
+    def create(self, request):
+        queryset = Import.objects.all()
+        serializer = ListImportSerializer(queryset, many=True)
+        if len(queryset) > 0:
+            paginator = CustomImportPagination()
+            result_page = paginator.paginate_queryset(queryset, request)
+            serializer = ListImportSerializer(result_page, many=True)
+            return paginator.get_paginated_response(serializer.data)
+        else:
+            paginator = CustomImportPagination()
+            result_page = paginator.paginate_queryset(queryset, request)
+            return paginator.get_paginated_response(result_page)
+
+class SearchImportViewSet(viewsets.ModelViewSet):
+    search_fields = [
+
+        'user_id',
+        'imfile_name',
+        'imfile_type',
+        'imfile_size',
+        'imfile_isread',
+        'imfile_iscompleted',
+        'created_date',
+        'updated_date',
+
+    ]
+    ordering_fields = ['user_id', 'imfile_name',]
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter)
+    queryset = Import.objects.all()
+    serializer_class = ListImportSerializer
+    pagination_class = CustomImportPagination
+
+
+class ExportViewSet(viewsets.ModelViewSet):
+
+    queryset = Export.objects.all()
+    serializer_class = ExportSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+
+class ListExportViewSet(viewsets.ViewSet):
+    # pagination_class = CustomPagination
+    def create(self, request):
+        queryset = Export.objects.all()
+        serializer = ListExportSerializer(queryset, many=True)
+        if len(queryset) > 0:
+            paginator = CustomExportPagination()
+            result_page = paginator.paginate_queryset(queryset, request)
+            serializer = ListExportSerializer(result_page, many=True)
+            return paginator.get_paginated_response(serializer.data)
+        else:
+            paginator = CustomExportPagination()
+            result_page = paginator.paginate_queryset(queryset, request)
+            return paginator.get_paginated_response(result_page)
+
+class SearchExportViewSet(viewsets.ModelViewSet):
+    search_fields = [
+        'user_id',
+        'exfile_name',
+        'exfile_size',
+        'exfile_type',
+        'exfile_iscreated',
+        'exfile_iscompleted',
+        'created_date',
+        'updated_date',
+                    ]
+    ordering_fields = ['user_id', 'exfile_name',]
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter)
+    queryset = Export.objects.all()
+    serializer_class = ListExportSerializer
+    pagination_class = CustomExportPagination
