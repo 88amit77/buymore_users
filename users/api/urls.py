@@ -51,13 +51,13 @@ router.register(r'contenttypes', ContentTypeViewSet)
 router.register(r'permissions', PermissionViewSet)
 router.register(r'currency', CurrencyViewSet)
 #import & Export
-router.register(r'create_import', ImportViewSet)
-router.register(r'list_import', ListImportViewSet)
-router.register(r'search_import', SearchImportViewSet)
+router.register(r'create_import', ImportViewSet, basename='create_import')
+router.register(r'list_import', ListImportViewSet, basename='list_import')
+router.register(r'search_import', SearchImportViewSet, basename='search_import')
 
-router.register(r'create_export', ExportViewSet)
-router.register(r'list_export', ListExportViewSet)
-router.register(r'search_export', SearchExportViewSet)
+router.register(r'create_export', ExportViewSet, basename='create_export')
+router.register(r'list_export', ListExportViewSet, basename='list_export')
+router.register(r'search_export', SearchExportViewSet, basename='search_export')
 
 urlpatterns = [
     path('', include(router.urls)),
