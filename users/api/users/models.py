@@ -33,11 +33,13 @@ class Export(models.Model):
     user_id = models.IntegerField(null=True, blank=True)
     exfile_name = models.CharField(max_length=50, null=True, blank=True)
     exfile_size =models.FloatField(default=0.0)
-    exfile_url = models.CharField(max_length=200)
+    exfile_path = models.CharField(max_length=200, null=True, blank=True)
+    exfile_url = models.CharField(max_length=200, null=True, blank=True)
+    exfile_url_time = models.DateTimeField(max_length=200, null=True, blank=True)
     exfile_errorlog = models.CharField(max_length=200, null=True, blank=True)
     exfile_iscreated = models.BooleanField(default=False)
     exfile_isdownloaded = models.BooleanField(default=False)
     created_date = models.DateField(auto_now_add=True)
-    updated_date = models.DateField(auto_now_add=True)
+    updated_date = models.DateField(auto_now=True)
 
 
