@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import Group
-
+from django.contrib.postgres.fields import JSONField
 
 class Department(models.Model):
     department_name = models.CharField(max_length=255)
@@ -31,8 +31,10 @@ class Export(models.Model):
 
     export_id = models.AutoField(primary_key=True)
     user_id = models.IntegerField(null=True, blank=True)
+    file_type = models.CharField(max_length=200, null=True, blank=True)
+    query_params = JSONField(null=True, blank=True)
     exfile_name = models.CharField(max_length=50, null=True, blank=True)
-    exfile_size =models.FloatField(default=0.0)
+    exfile_size = models.FloatField(default=0.0)
     exfile_path = models.CharField(max_length=200, null=True, blank=True)
     exfile_url = models.CharField(max_length=200, null=True, blank=True)
     exfile_url_time = models.DateTimeField(max_length=200, null=True, blank=True)
