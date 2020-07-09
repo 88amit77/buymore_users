@@ -14,12 +14,15 @@ INSTALLED_APPS = [
 	'django.contrib.auth',
 	'django.contrib.staticfiles',
 	'rest_framework',
-	'rest_framework_swagger',
-	'api'
+	'drf_yasg',
+	'api',
+	'djoser',
+	'corsheaders'
 ]
 
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',
+	'corsheaders.middleware.CorsMiddleware',
 	'django.middleware.common.CommonMiddleware',
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -68,8 +71,8 @@ REST_FRAMEWORK = {
 	'DEFAULT_AUTHENTICATION_CLASSES': [
 		'rest_framework_simplejwt.authentication.JWTAuthentication',
 	],
+	'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
-
 TEMPLATES = [
 	{
 		'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -86,6 +89,8 @@ TEMPLATES = [
 	},
 ]
 
-STATIC_URL = '/static/'
+STATIC_URL = '/user/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+CORS_ORIGIN_ALLOW_ALL = True
