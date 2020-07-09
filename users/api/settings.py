@@ -17,7 +17,8 @@ INSTALLED_APPS = [
 	'drf_yasg',
 	'api',
 	'djoser',
-	'corsheaders'
+	'corsheaders',
+	'storages',
 ]
 
 MIDDLEWARE = [
@@ -94,3 +95,8 @@ STATIC_URL = '/user/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+# Dropbox storage
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DROPBOX_OAUTH2_TOKEN = 'd7ElXR2Sr-AAAAAAAAAAC2HC0qc45ss1TYhRYB4Jy6__NJU1jjGiffP7LlP_2rrf'
+DROPBOX_ROOT_PATH = '/buymore2/filemanager'
