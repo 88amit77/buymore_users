@@ -19,7 +19,7 @@ class Import(models.Model):
     imfile_section = models.CharField(max_length=50)
     imfile_subsection = models.CharField(max_length=50, null=True, blank=True)
     imfile_size =models.FloatField(default=0.0)
-    imfile_url = models.FileField(upload_to='import', max_length=100)
+    imfile_url = models.FileField(upload_to='import', max_length=100, blank=True, null=True)
     imfile_errorlog = models.CharField(max_length=200, null=True, blank=True)
     imfile_isread = models.BooleanField(default=False)
     imfile_iscompleted = models.BooleanField(default=False)

@@ -26,7 +26,7 @@ from .users.views import (
     SearchImportViewSet,
     ExportViewSet,
     SearchExportViewSet,
-    ListExportViewSet,
+    ListExportViewSet, GetCSVHeaders
 )
 from .currency.views import (
     CurrencyViewSet,
@@ -81,6 +81,8 @@ urlpatterns = [
     path('user/auth/', include('djoser.urls')),
     path('user/auth/', include('djoser.urls.jwt')),
     path("user/docs/", schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+	
 ]
 
 urlpatterns += staticfiles_urlpatterns()
+urlpatterns += path('user/csv/', GetCSVHeaders.as_view(), name="GetCSVHeaders"),
