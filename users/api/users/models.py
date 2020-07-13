@@ -15,7 +15,7 @@ class Import(models.Model):
     import_id = models.AutoField(primary_key=True)
     user_id = models.IntegerField(null=True, blank=True)
     imfile_name = models.CharField(max_length=50,null=True, blank=True)
-    imfile_type = models.BooleanField(default=False)
+    imfile_type = models.IntegerField(default=2) # 2-> Full Import 1-> partial import
     imfile_section = models.CharField(max_length=50)
     imfile_subsection = models.CharField(max_length=50, null=True, blank=True)
     imfile_size =models.FloatField(default=0.0)
