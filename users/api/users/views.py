@@ -359,7 +359,7 @@ class CustomExportPagination(PageNumberPagination):
 					'exfile_type':'File Type',
 					'exfile_size':'File Size',
 					'exfile_iscreated': 'Is Read',
-					'exfile_iscompleted': 'Is Completed',
+					'exfile_isdownloaded': 'Is Downloaded',
 					'created_date':'Created At',
 					'updated_date':'Updated At',
 
@@ -374,7 +374,7 @@ class CustomExportPagination(PageNumberPagination):
 					'exfile_type',
 					'exfile_size',
 					'exfile_iscreated',
-					'exfile_iscompleted',
+					'exfile_isdownloaded',
 					'created_date',
 					'updated_date',
 
@@ -454,11 +454,11 @@ class SearchExportViewSet(viewsets.ModelViewSet):
 		'exfile_size',
 		'exfile_type',
 		'exfile_iscreated',
-		'exfile_iscompleted',
+		'exfile_isdownloaded',
 		'created_date',
 		'updated_date',
 					]
-	ordering_fields = ['user_id', 'exfile_name',]
+	ordering_fields = ['user_id', 'exfile_name','created_date','updated_date']
 	filter_backends = (filters.SearchFilter, filters.OrderingFilter)
 	queryset = Export.objects.all()
 	serializer_class = ListExportSerializer
