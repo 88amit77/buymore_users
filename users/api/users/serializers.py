@@ -70,4 +70,4 @@ class ExportSerializer(serializers.ModelSerializer):
 class ListExportSerializer(serializers.ModelSerializer):
     class Meta:
         model = Export
-        fields = ('export_id', 'user_id', 'exfile_name', 'exfile_size', 'exfile_iscreated','exfile_isdownloaded','created_date', 'updated_date')
+        fields = ('export_id', 'user_id', 'exfile_name','file_type', 'exfile_size', 'exfile_iscreated','exfile_isdownloaded','created_date', 'updated_date')

@@ -356,7 +356,7 @@ class CustomExportPagination(PageNumberPagination):
 
 					'user_id':'User Name',
 					'exfile_name':'File Name',
-					'exfile_type':'File Type',
+					'file_type':'File Type',
 					'exfile_size':'File Size',
 					'exfile_iscreated': 'Is Read',
 					'exfile_isdownloaded': 'Is Downloaded',
@@ -452,7 +452,7 @@ class SearchExportViewSet(viewsets.ModelViewSet):
 		'user_id',
 		'exfile_name',
 		'exfile_size',
-		'exfile_type',
+		'file_type',
 		'exfile_iscreated',
 		'exfile_isdownloaded',
 		'created_date',

@@ -31,7 +31,7 @@ class Export(models.Model):
     export_id = models.AutoField(primary_key=True)
     user_id = models.IntegerField(null=True, blank=True)
     file_type = models.CharField(max_length=200, null=True, blank=True)
-    query_params = JSONField(null=True, blank=True)
+    query_params = models.CharField(max_length=200, null=True, blank=True)
     exfile_name = models.CharField(max_length=50, null=True, blank=True)
     exfile_size = models.FloatField(default=0.0)
     exfile_path = models.CharField(max_length=200, null=True, blank=True)
