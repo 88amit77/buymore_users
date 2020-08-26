@@ -482,7 +482,15 @@ class GetCSVHeaders(APIView):
 		price_csv = ["price_rule_code", "percentage_value", "price_rule_type", "list_value","percentage_price_list", "user_type", "description", "created_at", "updated_at"]
 		
 		master_pdt_csv = ["buymore_sku", "ean", "product_name", "product_mrp", "product_length", "product_breath", "product_width", "product_weight", "min_payout_value", "max_payout_value", "product_model_no", "series_name", "child_variations", "description", "sales_rank", "image_url", "key_point", "status", "brand_id_id", "category_id_id", "hsn_code_id_id", "currency_id_id", "created_at", "updated_at"]
-		
+
+		amazon_pdt_csv = ["product_id","amazon_portal_sku","amazon_unique_id","amazon_listing_id","amazon_price_rule","amazon_break_even_sp","amazon_min_break_even_sp","amazon_max_break_even_sp","amazon_vendors_price","amazon_purchase_order_value","amazon_current_selling_price","amazon_upload_selling_price","amazon_competitor_lowest_price","amazon_account_id","amazon_all_values_external_api","amazon_created_at","amazon_updated_at","amazon_portal_category_id"]
+
+		flipkart_pdt_csv =["product_id","flipkart_portal_sku","flipkart_portal_unique_id","flipkart_listing_id","flipkart_price_rule","flipkart_break_even_sp","flipkart_min_break_even_sp","flipkart_max_break_even_sp","flipkart_vendors_price","flipkart_purchase_order_value","flipkart_current_selling_price","flipkart_upload_selling_price","flipkart_competitor_lowest_price","flipkart_account_id","flipkart_all_values_external_api","flipkart_portal_category_id"]
+
+		paytm_pdt_csv = ["product_id","paytm_portal_sku","paytm_portal_unique_id","paytm_listing_id","paytm_price_rule","paytm_break_even_sp","paytm_min_break_even_sp","paytm_max_break_even_sp","paytm_vendors_price","paytm_purchase_order_value","paytm_current_selling_price","paytm_upload_selling_price","paytm_competitor_lowest_price","paytm_account_id","paytm_all_values_external_api","paytm_portal_category_id"]
+
+		snapdeal_pdt_csv = ["product_id","snapdealp_portal_sku","snapdealp_portal_unique_id","snapdealp_listing_id","snapdealp_price_rule","snapdealp_break_even_sp","snapdealp_min_break_even_sp","snapdealp_max_break_even_sp","snapdealp_vendors_price","snapdealp_purchase_order_value","snapdealp_current_selling_price","snapdealp_upload_selling_price","snapdealp_competitor_lowest_price","snapdealp_account_id","snapdealp_all_values_external_api","snapdealp_portal_category_id"]
+
 		catreq_csv = ["category_name", "default_commission_rate", "a", "b", "c", "d", "max", "min", "created_at", "updated_at"]
 		
 		pdt_attrib_csv = ["product_id_id","asin", "brand", "name", "item_height", "item_length", "item_width",	"item_weight", "label",	"manufacturers", "model", "package_height", "package_length", "package_width",	"package_weight", "package_quantity", "part_number", "product_group", "product_type_name", "publisher",	"image_url", "image_height", "image_width", "studio", "title", "number_of_images", "image_1", "image_2", "image_3", "image_4", "image_5", "image_6", "number_of_key_points", "key_point_1", "key_point_2", "key_point_3", "key_point_4", "key_point_5", "key_point_6", "browse_node", "selling_price", "mrp", "product_rating", "customer_review", "buy_box_seller_name","buy_box_seller_rating", "description", "multiple_portal_id", "sales_rank", "sales_rank_category",	"seller_name", "created_at", "updated_at"]
@@ -545,6 +553,14 @@ class GetCSVHeaders(APIView):
 				csv_headers = pdt_attrib_csv
 			elif imfile_subsection == "catreq":
 				csv_headers = catreq_csv
+			elif imfile_subsection == "amazonproduct":
+				csv_headers = amazon_pdt_csv
+			elif imfile_subsection == "flipkartproduct":
+				csv_headers = flipkart_pdt_csv
+			elif imfile_subsection == "paytmproduct":
+				csv_headers = paytm_pdt_csv
+			elif imfile_subsection == "snapdealproduct":
+				csv_headers = snapdeal_pdt_csv
 			else:
 				csv_headers = "Invalid Choice selected!!!"
 		
