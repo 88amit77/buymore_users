@@ -533,11 +533,11 @@ class GetCSVHeaders(APIView):
 		########################
 
 		######## Orders
-		dispatch_details_csv = ["dd_id", "name", "address", "pincode", "location_latitude", "location_longitude",
+		dispatch_details_csv = ["dd_id_id", "name", "address", "pincode", "location_latitude", "location_longitude",
 								"email_id", "phone",
 								"status", "l_b_h_w", "bin_Id", "bin_confirm", "picklist_id", "is_mark_placed",
 								"have_invoice_file", "packing_status",
-								"is_dispatch", "dispatch_confirmed", "mf_id", "is_shipment_create", "awb",
+								"is_dispatch", "dispatch_confirmed", "mf_id_id", "is_shipment_create", "awb",
 								"courier_partner",
 								"shipment_id", "fulfillment_model", "is_canceled", "dd_cancelledpaymentstatus",
 								"dd_paymentstatus",
@@ -547,7 +547,7 @@ class GetCSVHeaders(APIView):
 
 		calculationapilist_csv = ["cal_name", "cal_table_id", "cal_average_time", "cal_cron_code"]
 
-		dispatch_csv = ["dd_id_id", "name", "address", "pincode", "location_latitude", "location_longitude",	"email_id", "phone", "status", "l_b_h_w", "bin_id", "picklist_id", "is_mark_placed", "have_invoice_file", "packing_status", "is_dispatch", "dispatch_confirmed", "mf_id_id", "is_shipment_create", "awb", "courier_partner", "shipment_id", "is_canceled", "cancel_inward_bin","created_at", "update_at"]
+		dispatch_csv = ["dd_id_id", "name", "address", "pincode", "location_latitude", "location_longitude", "email_id", "phone", "status", "l_b_h_w", "bin_id", "picklist_id", "is_mark_placed", "have_invoice_file", "packing_status", "is_dispatch", "dispatch_confirmed", "mf_id_id", "is_shipment_create", "awb", "courier_partner", "shipment_id", "is_canceled", "cancel_inward_bin","created_at", "update_at"]
 		
 		manifest_csv = ["courier_partner", "mf_sheet", "created_date"]
 		
@@ -582,7 +582,7 @@ class GetCSVHeaders(APIView):
 		
 		leave_csv = ["leave_name", "interval_months", "add_value", "yearly_carry_forward", "document_required"]
 
-		sal_csv = ["ctc", "basic", "hra", "conveyance_allowances", "medical_allowance", "cca_allowance", "pf_employer", "pf_employee", "pt", "esi_employer", "esi_employee", "special_allowances"]
+		sal_csv = ["emp_id_id", "ctc", "basic", "hra", "conveyance_allowances", "medical_allowance", "cca_allowance", "pf_employer", "pf_employee", "pt", "esi_employer", "esi_employee", "special_allowances"]
 		
 		fam_csv = ["family_member_name", "relation", "contact_number", "family_members_id"]
 
