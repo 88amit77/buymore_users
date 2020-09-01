@@ -477,7 +477,19 @@ class GetCSVHeaders(APIView):
 		imfile_section = self.request.query_params.get('imfile_section')
 		imfile_subsection = self.request.query_params.get('imfile_subsection')
 
+		###users
+		users_departments_csv = ["department_name","department_type","created_at","updated_at","groups"]
+
+
+		#####warehouse
+
+		vendor_storage_fee_exception_csv = ["vendor_id","Shorttermfee","longtermfee","created_at","updated_at"]
+
 		#### Products
+
+
+		category_requirement_csv = ["category_name", "default_commission_rate", "default_commission_rate", "a", "b",
+									"c", "d", "max", "min", "created_at", "updated_at"]
 		hsn_csv = ["hsn_code", "max_rate", "min_rate", "threshold_amount", "depend_price", "category_id", "created_at",	"updated_at"]
 		price_csv = ["price_rule_code", "percentage_value", "price_rule_type", "list_value","percentage_price_list", "user_type", "description", "created_at", "updated_at"]
 		
@@ -494,6 +506,23 @@ class GetCSVHeaders(APIView):
 		catreq_csv = ["category_name", "default_commission_rate", "a", "b", "c", "d", "max", "min", "created_at", "updated_at"]
 		
 		pdt_attrib_csv = ["product_id_id","asin", "brand", "name", "item_height", "item_length", "item_width",	"item_weight", "label",	"manufacturers", "model", "package_height", "package_length", "package_width",	"package_weight", "package_quantity", "part_number", "product_group", "product_type_name", "publisher",	"image_url", "image_height", "image_width", "studio", "title", "number_of_images", "image_1", "image_2", "image_3", "image_4", "image_5", "image_6", "number_of_key_points", "key_point_1", "key_point_2", "key_point_3", "key_point_4", "key_point_5", "key_point_6", "browse_node", "selling_price", "mrp", "product_rating", "customer_review", "buy_box_seller_name","buy_box_seller_rating", "description", "multiple_portal_id", "sales_rank", "sales_rank_category",	"seller_name", "created_at", "updated_at"]
+
+		brand_csv = ["brand_name", "description", "created_at", "updated_at"]
+
+		product_attributes_csv = ["product_id", "asin", "brand", "name", "item_height", "item_length", "item_width", "item_weight", "label", "manufacturers",
+								  "model", "package_height", "package_length", "package_width", "package_weight",
+								  "package_quantity", "part_number", "product_group",
+		                        "product_type_name", "publisher", "image_url", "image_height", "image_width", "studio", "title", "number_of_images", "image_1", "image_2", "image_3", "image_4",
+								 "image_5", "image_6", "browse_node", "selling_price", "mrp", "product_rating", "customer_review", "buy_box_seller_name", "buy_box_seller_rating", "description", "multiple_portal_id",
+								 "sales_rank", "sales_rank_category", "seller_name", "created_at", "updated_at" ]
+
+		purchase_invoice_csv = ["invoice_number" ,"invoice_date" ,"purchase_order_number" ,"vendor_id", "invoice_kind", "payment_due_date", "userid_to_verify", "warehouse_id", "invoice_upload", "created_at", "updated_at"]
+
+		purchase_sku_details_csv = ["product_id", "quantity", "quantity", "basic_price", "net_gst","purchase_invoice_id", "is_calculated", "po_value", "is_below_po", "qty_received"]
+
+
+
+
 		#######################
 		
 		##### Vendors
@@ -504,6 +533,20 @@ class GetCSVHeaders(APIView):
 		########################
 
 		######## Orders
+		dispatch_details_csv = ["dd_id", "name", "address", "pincode", "location_latitude", "location_longitude",
+								"email_id", "phone",
+								"status", "l_b_h_w", "bin_Id", "bin_confirm", "picklist_id", "is_mark_placed",
+								"have_invoice_file", "packing_status",
+								"is_dispatch", "dispatch_confirmed", "mf_id", "is_shipment_create", "awb",
+								"courier_partner",
+								"shipment_id", "fulfillment_model", "is_canceled", "dd_cancelledpaymentstatus",
+								"dd_paymentstatus",
+								"cancel_inward_bin", "created_at", "update_at"]
+
+		externalapilist_csv = ["eal_name", "eal_portal_id", "eal_account_id", "eal_average_time", "eal_cron_code"]
+
+		calculationapilist_csv = ["cal_name", "cal_table_id", "cal_average_time", "cal_cron_code"]
+
 		dispatch_csv = ["dd_id_id", "name", "address", "pincode", "location_latitude", "location_longitude",	"email_id", "phone", "status", "l_b_h_w", "bin_id", "picklist_id", "is_mark_placed", "have_invoice_file", "packing_status", "is_dispatch", "dispatch_confirmed", "mf_id_id", "is_shipment_create", "awb", "courier_partner", "shipment_id", "is_canceled", "cancel_inward_bin","created_at", "update_at"]
 		
 		manifest_csv = ["courier_partner", "mf_sheet", "created_date"]
@@ -520,6 +563,10 @@ class GetCSVHeaders(APIView):
 		
 		fulfill_csv = ["dd_id_id", "return_request_date", "actual_return_date", "destination_warehouse_id","return_reason", "sub_reason", "awb", "pod_id_id", "return_type"]
 
+
+
+
+
 		########################
 
 		##### Employee
@@ -531,11 +578,15 @@ class GetCSVHeaders(APIView):
 		
 		work_csv = ["company_name", "period_from", "period_to", "designation", "reason_for_leaving", "verified", "work_historys_id"]
 		
-		emp_csv = ["name", "dob", "gender", "blood_group", "marital_status", "marriage_anniversary","official_email", "personal_email", "official_number", "personal_number", "facebook", "instagram","linkedin", "twitter", "date_of_joining", "probation_period", "current_address_line1", "current_address_line2", "current_country", "current_state", "current_pincode", "current_house_type","current_staying_since", "current_city", "permanent_address_line1", "permanentt_address_line2",	"permanent_country", "permanent_state", "permanent_pincode", "employee_type", "employee_status","job_title", "termination_date", "work_location_add", "designation", "department", "resignation_date","resignation_notes", "notice_date", "notice_period", "bank_acc_number", "ifsc_code", "bank_name"]
+		emp_csv = ["name", "dob", "gender", "blood_group", "marital_status", "marriage_anniversary","official_email", "personal_email", "official_number", "personal_number", "facebook", "instagram","linkedin", "twitter", "date_of_joining", "probation_period", "current_address_line1", "current_address_line2", "current_country", "current_state", "current_pincode", "current_house_type","current_staying_since", "current_city", "permanent_address_line1", "permanentt_address_line2",	"permanent_country", "permanent_state", "permanent_pincode", "employee_type", "employee_status","job_title", "termination_date", "work_location_add", "designation", "department", "resignation_date","resignation_notes", "notice_date", "notice_period", "bank_acc_number", "ifsc_code", "bank_name", "pan_card", "pan_number", "address_proof", "permanent_proof", "aadharcard_number", "aadharcard"]
 		
 		leave_csv = ["leave_name", "interval_months", "add_value", "yearly_carry_forward", "document_required"]
+
+		sal_csv = ["ctc", "basic", "hra", "conveyance_allowances", "medical_allowance", "cca_allowance", "pf_employer", "pf_employee", "pt", "esi_employer", "esi_employee", "special_allowances"]
 		
 		fam_csv = ["family_member_name", "relation", "contact_number", "family_members_id"]
+
+		department_csv = ["dept_name"]
 		#######################
 
 
@@ -561,18 +612,46 @@ class GetCSVHeaders(APIView):
 				csv_headers = paytm_pdt_csv
 			elif imfile_subsection == "snapdealproduct":
 				csv_headers = snapdeal_pdt_csv
+			elif imfile_subsection == "brand":
+				csv_headers = brand_csv
+			elif imfile_subsection == "purchase_invoice":
+				csv_headers = purchase_invoice_csv
+			elif imfile_subsection == "purchase_sku_details":
+				csv_headers = purchase_sku_details_csv
+			elif imfile_subsection == "category_requirement":
+				csv_headers = category_requirement_csv
+			elif imfile_subsection == "product_attributes":
+				csv_headers = product_attributes_csv
 			else:
 				csv_headers = "Invalid Choice selected!!!"
-		
+
 		elif imfile_section == "vendors":
 			
 			if imfile_subsection == "vendor":
-				csv_headers = vendor_csv
+				csv_headers = vendors_csv
 			elif imfile_subsection == "vendorcontact":
 				csv_headers = vendors_contact_csv
 			else:
 				csv_headers = "Invalid Choice selected!!!"
-		
+
+		elif imfile_section == "users":
+
+			if imfile_subsection == "users_departments":
+				csv_headers = users_departments_csv
+			# elif imfile_subsection == "vendorcontact":
+			# 	csv_headers = vendors_contact_csv
+			else:
+				csv_headers = "Invalid Choice selected!!!"
+
+		elif imfile_section == "warehouse":
+
+			if imfile_subsection == "vendor_storage_fee_exception":
+				csv_headers = vendor_storage_fee_exception_csv
+			# elif imfile_subsection == "vendorcontact":
+			# 	csv_headers = vendors_contact_csv
+			else:
+				csv_headers = "Invalid Choice selected!!!"
+
 		elif imfile_section == "orders":
 			
 			if imfile_subsection == "dispatch":
@@ -591,9 +670,16 @@ class GetCSVHeaders(APIView):
 				csv_headers = new_order_csv
 			elif imfile_subsection == "fulfill":
 				csv_headers = fulfill_csv
+			elif imfile_subsection == "externalapilist":
+				csv_headers = externalapilist_csv
+			elif imfile_subsection == "calculationapilist":
+				csv_headers = calculationapilist_csv
+			elif imfile_subsection == "dispatch_details":
+				csv_headers = dispatch_details_csv
 			else:
 				csv_headers = "Invalid Choice selected!!!"
-		
+
+
 		elif imfile_section == "employee":
 			if imfile_subsection == "attendance":
 				csv_headers = emp_att_csv
@@ -609,6 +695,10 @@ class GetCSVHeaders(APIView):
 				csv_headers = leave_csv
 			elif imfile_subsection == "family":
 				csv_headers = fam_csv
+			elif imfile_subsection == "salary":
+				csv_headers = sal_csv
+			elif imfile_subsection == "department":
+				csv_headers = department_csv
 			else:
 				csv_headers = "Invalid Choice selected!!!!!!!!!"
 		
