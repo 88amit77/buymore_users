@@ -98,5 +98,5 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 # Dropbox storage
 DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-DROPBOX_OAUTH2_TOKEN = 'd7ElXR2Sr-AAAAAAAAAAC2HC0qc45ss1TYhRYB4Jy6__NJU1jjGiffP7LlP_2rrf'
+DROPBOX_OAUTH2_TOKEN = '4joGxl-yofIAAAAAAAAAAW0Wa_qjsmOhQ6NYfWtkG0mNefNaTsIx8hD8BVgkavph'
 DROPBOX_ROOT_PATH = '/buymore2/filemanager'
