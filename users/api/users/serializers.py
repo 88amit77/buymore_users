@@ -58,7 +58,7 @@ class ListImportSerializer(serializers.ModelSerializer):
     class Meta:
         model = Import
         fields = ('import_id', 'user_id', 'imfile_name', 'imfile_type', 'imfile_size', 'imfile_isread'
-                  , 'imfile_iscompleted', 'created_date', 'updated_date')
+                  , 'imfile_iscompleted', 'created_date', 'updated_date','imfile_url','imfile_section','imfile_subsection','imfile_errorlog')
 
 
 class ExportSerializer(serializers.ModelSerializer):
