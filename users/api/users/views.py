@@ -559,7 +559,7 @@ class GetCSVHeaders(APIView):
 
 		dispatch_csv = ["dd_id_id", "name", "address", "pincode", "location_latitude", "location_longitude", "email_id", "phone", "status", "l_b_h_w", "bin_id", "picklist_id", "is_mark_placed", "have_invoice_file", "packing_status", "is_dispatch", "dispatch_confirmed", "mf_id_id", "is_shipment_create", "awb", "courier_partner", "shipment_id", "is_canceled", "cancel_inward_bin","created_at", "update_at"]
 		
-		manifest_csv = ["courier_partner", "mf_sheet", "created_date"]
+		manifest_csv = ["courier_partner", "mf_sheet", "created_date","original_manifest_id","original_manifest_image"]
 		
 		pod_csv = ["pod_number", "courier_partner_name", "pod_image_list", "total_quantity_received","processed_quantity", "warehouse_id", "courier_received_date",	"created_by", "status", "updated_at"]
 		
