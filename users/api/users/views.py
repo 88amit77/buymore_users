@@ -489,7 +489,7 @@ class GetCSVHeaders(APIView):
 		#### Products
 
 
-		category_requirement_csv = ["category_name", "default_commission_rate", "default_commission_rate", "a", "b",
+		category_requirement_csv = ["category_name", "default_commission_rate", "a", "b",
 									"c", "d", "max", "min", "created_at", "updated_at"]
 		hsn_csv = ["hsn_code", "max_rate", "min_rate", "threshold_amount", "depend_price", "category_id", "created_at",	"updated_at"]
 		price_csv = ["price_rule_code", "percentage_value", "price_rule_type", "list_value","percentage_price_list", "user_type", "description", "created_at", "updated_at"]
@@ -512,7 +512,7 @@ class GetCSVHeaders(APIView):
 
 		brand_csv = ["brand_name", "description", "created_at", "updated_at"]
 
-		product_attributes_csv = ["product_id", "asin", "brand", "name", "item_height", "item_length", "item_width", "item_weight", "label", "manufacturers",
+		product_attributes_csv = ["product_id_id", "asin", "brand", "name", "item_height", "item_length", "item_width", "item_weight", "label", "manufacturers",
 								  "model", "package_height", "package_length", "package_width", "package_weight",
 								  "package_quantity", "part_number", "product_group",
 		                        "product_type_name", "publisher", "image_url", "image_height", "image_width", "studio", "title", "number_of_images", "image_1", "image_2", "image_3", "image_4",
